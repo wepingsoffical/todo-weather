@@ -1,0 +1,67 @@
+name: india_weather_app
+description: All-India Weather & Travel Companion — GPS/IP location, live radar, route weather, district explorer, offline timeline, encrypted backup.
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # --- Location (Phase 1) ---
+  geolocator: ^11.0.0          # GPS location (open-source plugin)
+  http: ^1.2.0                 # ip-api.com fallback (proto) / GeoLite2 lookup wrapper (production)
+
+  # --- Weather (Phase 1) ---
+  # Open-Meteo consumed via plain http — no SDK needed, no API key
+
+  # --- Map (Phase 2+) ---
+  flutter_map: ^8.3.2          # OpenStreetMap rendering
+  latlong2: ^0.10.1             # Lat/Lng + polyline math
+
+  # --- Local storage (Phase 5) ---
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # --- Sound alerts (Phase 3) ---
+  just_audio: ^0.9.36
+
+  # --- Localization (Phase 6) ---
+  easy_localization: ^3.0.5
+
+  # --- Encryption (Phase 7) ---
+  encrypt: ^5.0.3
+  flutter_secure_storage: ^9.0.0
+
+  # --- Backup (Phase 7) ---
+  google_sign_in: ^6.2.1
+  googleapis: ^13.1.0
+
+  # --- Background sync & Notifications ---
+  # workmanager: ^0.10.10
+  # Temporarily removed: even at the latest version, workmanager_android
+  # still applies the old-style Kotlin Gradle Plugin, which fails to build
+  # on newer AGP/Kotlin toolchains (Flutter's "migrate to built-in Kotlin"
+  # notice). Not used by any code yet (Phase 7 background backup isn't
+  # implemented). Re-add once the package ships a fix, or switch to an
+  # alternative background-task plugin when implementing Phase 7.
+  permission_handler: ^11.3.0
+  flutter_local_notifications: ^17.0.0
+
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.8
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/translations/
+    - assets/sounds/
+    - assets/data/districts.json
